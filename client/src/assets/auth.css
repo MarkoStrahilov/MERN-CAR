@@ -1,0 +1,47 @@
+.app-register {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(90deg, #cde3e6, #00a8ff);
+    /*
+    border: 5px solid black;
+    background: rgba(0, 0, 0, 0.5) url('./assets/images/registerBackground.jpg');
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken; */
+}
+
+.sign-container {
+    width: 70%;
+    padding-top: 5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sign-form {
+    padding: 5rem;
+    width: 35%;
+}
+
+.label-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.sign-phone-conatiner {
+    padding: 5rem;
+    width: 35%;
+}
+
+.sign-title {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.sign-img {
+    width: 100%;
+    height: 100%;
+}
