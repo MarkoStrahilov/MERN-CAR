@@ -3,11 +3,10 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
-const local = require('passport-local')
+const LocalStrategy = require('passport-local')
 const cors = require('cors')
 
 const authenticateUserRoute = require('./routes/auth')
-
 const User = require('./models/user')
 
 const app = express()
@@ -34,17 +33,20 @@ const sessionOptions = {
     }
 }
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: true, credentials: true }))
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
 
 app.use(session(sessionOptions));
-app.use(passport.initialize());
+app.use(passport.initialize())
 app.use(passport.session())
-passport.use(new local(User.authenticate()));
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
 
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;

@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
+import { ToastContainer } from 'react-toastify';
 import HomePage from './layout/HomePage';
 import Explore from './components/Explore'
 import Offers from './components/Offers'
@@ -23,6 +24,7 @@ function App() {
             <Route path='/*' element={<ErrorPage />}/>
           </Routes>
       </Router>
+      <ToastContainer />
       </div>
     </>
   );
