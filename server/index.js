@@ -6,7 +6,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local')
 const cors = require('cors')
 
-const authenticateUserRoute = require('./routes/auth')
+const authenticateUserRoute = require('./routes/apiRoutes')
 const User = require('./models/user')
 
 const app = express()

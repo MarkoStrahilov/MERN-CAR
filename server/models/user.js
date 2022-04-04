@@ -9,8 +9,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    }
-})
+    },
+    carListings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Car'
+    }]
+}, { timestamps: true })
 
 userSchema.plugin(passportLocalMongoose)
 
