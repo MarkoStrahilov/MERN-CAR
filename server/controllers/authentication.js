@@ -1,6 +1,39 @@
 const passport = require('passport');
 const User = require('../models/user');
 
+module.exports.getUser = async(req, res) => {
+
+    try {
+
+        const foundUser = await User.findOne({ username: req.params.username })
+
+        if (!foundUser) {
+
+            res.status(404).send({
+                status: "fail",
+                message: "Can't find user",
+                data: null
+            });
+        }
+
+        res.status(200).send({
+            status: 'success',
+            message: 'GET user data',
+            data: foundUser,
+        })
+
+    } catch (error) {
+
+        res.status(404).send({
+            status: 'fail',
+            message: error,
+            data: null
+        })
+
+    }
+
+}
+
 module.exports.registerUser = async(req, res) => {
 
     try {
@@ -10,7 +43,8 @@ module.exports.registerUser = async(req, res) => {
         const newUser = await User.register(user, password)
 
         res.status(200).send({
-            status: 'Created new user',
+            status: 'success',
+            message: 'Created new user',
             data: { newUser }
         })
 
@@ -18,7 +52,8 @@ module.exports.registerUser = async(req, res) => {
 
         res.status(400).send({
             status: 'fail',
-            message: error
+            message: error,
+            data: null
         });
 
     }
@@ -26,6 +61,7 @@ module.exports.registerUser = async(req, res) => {
 
 
 module.exports.loginUser = async(req, res, next) => {
+
     try {
 
         passport.authenticate('local', { failureRedirect: 'http://localhost:3000/sign-in' }, (err, user) => {
@@ -36,7 +72,8 @@ module.exports.loginUser = async(req, res, next) => {
 
                 res.status(404).send({
                     status: 'fail',
-                    message: "User doesn't exist"
+                    message: "User doesn't exist",
+                    data: null
                 });
 
             } else {
@@ -45,7 +82,8 @@ module.exports.loginUser = async(req, res, next) => {
                     if (err) throw err;
 
                     res.status(200).send({
-                        status: 'successfuly signed in',
+                        status: 'success',
+                        message: 'successfuly signed in',
                         data: req.user
                     })
 
@@ -55,9 +93,10 @@ module.exports.loginUser = async(req, res, next) => {
 
     } catch (error) {
 
-        res.status(401).json({
+        res.status(401).send({
             status: 'fail',
-            message: error
+            message: error,
+            data: null
         });
 
     }
@@ -66,6 +105,11 @@ module.exports.loginUser = async(req, res, next) => {
 module.exports.logoutUser = async(req, res) => {
 
     req.logout()
-    res.status(200).send('successfuly logged out')
+
+    res.status(200).send({
+        status: 'success',
+        messasge: 'successfuly logged out',
+        data: null
+    })
 
 }
