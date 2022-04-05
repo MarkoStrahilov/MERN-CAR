@@ -32,7 +32,7 @@ try {
   
   const user = {username,password}
  
- await axios.post('http://localhost:2000/api/v1/login/user', user)
+ await axios.post('http://localhost:2000/api/v1/auth/login/user', user)
 
  toast.success('successfuly logged in')
   navigate({

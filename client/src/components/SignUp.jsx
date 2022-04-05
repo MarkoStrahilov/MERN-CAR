@@ -33,7 +33,7 @@ const SignUp = () => {
       
       e.preventDefault()
       const user = {username,email,password}
-      await axios.post('http://localhost:2000/api/v1/create/user', user)
+      await axios.post('http://localhost:2000/api/v1/auth/create/user', user)
 
       toast.success('registration successful')
       navigate({

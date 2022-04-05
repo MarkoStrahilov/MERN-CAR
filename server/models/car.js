@@ -4,11 +4,13 @@ const Schema = mongoose.Schema
 const carSchema = new Schema({
 
     name: {
-        type: String
+        type: String,
+        trim: true
     },
     description: {
         type: String,
-        maxlength: [500, 'car description must not have more then 500 characters']
+        maxlength: [500, 'car description must not have more then 500 characters'],
+        trim: true
     },
     images: [{
         url: String,
@@ -20,15 +22,19 @@ const carSchema = new Schema({
     },
     insurence: {
         type: String,
+        trim: true
     },
     category: {
         type: String,
+        trim: true
     },
     features: [{
-        type: String
+        type: String,
+        trim: true
     }],
     guidelines: [{
-        type: String
+        type: String,
+        trim: true
     }],
     location: {
         pickup: {

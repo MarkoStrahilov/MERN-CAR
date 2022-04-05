@@ -20,7 +20,7 @@ const User = () => {
     
     try {
 
-      await axios.get('http://localhost:2000/api/v1/logout/user')
+      await axios.get('http://localhost:2000/api/v1/auth/logout/user')
       
       toast.success('successfuly logged out')
       navigate({pathname: "/sign-in"})

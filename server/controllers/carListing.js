@@ -5,11 +5,30 @@ module.exports.getCarListings = async(req, res) => {
 
     try {
 
-        res.send('get car listings')
+        const queryObject = {...req.query }
+
+        const advancedFields = ['page', 'sort', 'limit', 'fields']
+
+        advancedFields.forEach(field => delete queryObject[field])
+
+        const query = Car.find(queryObject);
+
+        const foundCars = await query;
+
+
+        res.status(200).send({
+            status: 'success',
+            dataLength: foundCars.length,
+            data: { foundCars },
+        })
 
     } catch (error) {
 
-        res.send('error something went wrong')
+        res.status(400).send({
+            status: 'fail',
+            message: error,
+            data: null
+        })
 
     }
 
@@ -85,7 +104,6 @@ module.exports.createCarListing = async(req, res) => {
             message: error,
             data: null
         })
-
 
     }
 
