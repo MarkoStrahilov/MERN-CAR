@@ -10,6 +10,10 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
     carListings: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'
