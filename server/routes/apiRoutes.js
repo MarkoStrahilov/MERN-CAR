@@ -5,7 +5,7 @@ const router = express.Router({ mergeParams: true });
 const { asyncErrorHandle } = require('../middlewares/middleware')
 
 // require authentication functions
-const { registerUser, loginUser, logoutUser } = require('../controllers/authentication')
+const { registerUser, loginUser, logoutUser, verifyAuthToken } = require('../controllers/authentication')
 
 // require user functions
 const { getUser } = require('../controllers/user')
@@ -22,6 +22,8 @@ router.post('/api/v1/auth/create/user', asyncErrorHandle(registerUser))
 router.post('/api/v1/auth/login/user', asyncErrorHandle(loginUser))
 
 router.get(`/api/v1/auth/logout/user`, asyncErrorHandle(logoutUser))
+
+router.post('/api/v1/auth/verify/auth/token/user/:username', asyncErrorHandle(verifyAuthToken))
 
 // user routes
 router.get('/api/v1/user/:username', asyncErrorHandle(getUser))

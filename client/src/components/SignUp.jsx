@@ -35,12 +35,12 @@ const SignUp = () => {
       const user = {username,email,password}
       await axios.post('http://localhost:2000/api/v1/auth/create/user', user)
 
-      toast.success('registration successful')
+      toast.success('registration successful please verify your account')
+
       navigate({
-        pathname: `/user/${username}`
+        pathname: `/user/${username}/verify-account`
       })
     
-
      } catch (error) {
      
       toast.error('something went wrong please try again')

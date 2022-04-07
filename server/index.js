@@ -12,6 +12,11 @@ const User = require('./models/user')
 
 const app = express()
 
+app.all('*', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+    next();
+});
+
 app.listen(2000, () => {
     console.log('server runing on port 2000 ...')
 })

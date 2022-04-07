@@ -34,7 +34,9 @@ try {
  
  await axios.post('http://localhost:2000/api/v1/auth/login/user', user)
 
+
  toast.success('successfuly logged in')
+
   navigate({
     pathname: `/user/${username}`
   })
@@ -49,7 +51,8 @@ try {
 
 }
 
-  return (
+
+return (
     <form style={styles} onSubmit={onSubmit}>
       <div className='sign-container'>
         <div className="sign-form">
