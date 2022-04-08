@@ -10,10 +10,6 @@ const otpTokenSchema = new Schema({
         type: String,
         required: true
     },
-    token: {
-        type: String,
-        required: true,
-    },
     createdAt: {
         type: Date,
         required: true,

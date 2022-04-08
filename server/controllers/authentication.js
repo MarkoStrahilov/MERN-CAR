@@ -2,6 +2,7 @@ const passport = require('passport');
 const User = require('../models/user');
 const OtpToken = require('../models/otpToken')
 const bcrypt = require('bcrypt')
+const sendEmail = require('../sendEmails/verifyAccount')
 
 module.exports.registerUser = async(req, res) => {
 
@@ -14,16 +15,24 @@ module.exports.registerUser = async(req, res) => {
 
         const otp = `${Math.floor(1000 + Math.random() * 9000)}`
 
-        // send verification email
+        const otpText = `<div>
+        Hello There, ${newUser.username}, in order to verify your account please enter the the following code ${otp}
+        </div>`
 
         const salt = 10;
 
         const hashedOtp = await bcrypt.hash(otp, salt)
 
+        await sendEmail({
+            email: email,
+            subject: 'Account Verification',
+            text: otpText
+        })
+
+
         const otpVerificationModel = new OtpToken({
             userId: newUser._id,
             otpSecret: hashedOtp,
-            token: otp,
             createdAt: Date.now(),
             expiresAt: Date.now() + 10 * 60 * 1000
         })
@@ -119,7 +128,7 @@ module.exports.verifyAuthToken = async(req, res) => {
 
     try {
 
-        const foundUser = await User.findOne({ username: req.body.username })
+        const foundUser = await User.findOne({ username: req.params.username })
 
         if (!foundUser) {
 
@@ -144,8 +153,6 @@ module.exports.verifyAuthToken = async(req, res) => {
 
         }
 
-        // needs experation date
-
         const experationDate = foundOtpToken.expiresAt
 
         if (experationDate < Date.now()) {
@@ -161,6 +168,8 @@ module.exports.verifyAuthToken = async(req, res) => {
 
         const validOtp = await bcrypt.compare(req.body.otp, foundOtpToken.otpSecret)
 
+
+
         if (!validOtp) {
 
             return res.status(401).send({
@@ -172,7 +181,7 @@ module.exports.verifyAuthToken = async(req, res) => {
 
         await OtpToken.deleteMany({ _id: foundOtpToken.id })
 
-        await User.updateOne({ _id: foundUser._id }, { $set: { isVerified: true } })
+        await User.updateOne(foundUser, { $set: { isVerified: true } }, { runValidators: true })
 
         await foundUser.save()
 

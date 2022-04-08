@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local')
+
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
@@ -11,11 +13,6 @@ const authenticateUserRoute = require('./routes/apiRoutes')
 const User = require('./models/user')
 
 const app = express()
-
-app.all('*', (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://localhost:3000");
-    next();
-});
 
 app.listen(2000, () => {
     console.log('server runing on port 2000 ...')

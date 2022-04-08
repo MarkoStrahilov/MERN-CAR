@@ -13,8 +13,9 @@ const Verification = () => {
     const [username, setUsername] = useState('')    
     const [password, setPassword] = useState('')    
     const [otp, setOtp] = useState('')
+    const [statusVerified,setStatusVerified] = useState(false)
 
-
+  
     const formSubmit = async(e) => {
   
         try {
@@ -29,6 +30,9 @@ const Verification = () => {
 
             toast.success('account successfuly verified')
 
+            navigate({
+              pathname: `/user/${username}`
+            })
 
         } catch (error) {
             
@@ -55,7 +59,7 @@ const Verification = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
           Password
         </label>
-        <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={(e) => setPassword(e.target.value)}/>
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" onChange={(e) => setPassword(e.target.value)}/>
         <p className="text-red-500 text-xs italic">Password</p>
       </div>
       <div className="mb-4">

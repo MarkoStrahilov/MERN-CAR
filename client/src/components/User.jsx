@@ -39,6 +39,17 @@ const User = () => {
   if(error) {
     return toast.error(error)
   }
+
+  if(user?.isVerified !== true ) {
+
+    toast.error("account is not verified or doesn't exist")
+    return navigate({
+      pathname: `/sign-in`
+
+    })
+
+  }
+
  return (
    <div className='app-user'>
      <p className='font-bold'>My Profile</p>

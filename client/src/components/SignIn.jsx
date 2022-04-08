@@ -43,7 +43,16 @@ try {
 
 } catch (error) {
 
-    toast.error('incorrect user credentials')
+    if(error.message === 'Request failed with status code 403') {
+
+      toast.error('the account you are trying to access is not verified')
+
+    } else {
+
+      toast.error('incorrect user credentials')
+
+    }
+
     navigate({
       pathname: `/sign-in`
     })
