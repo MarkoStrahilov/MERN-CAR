@@ -1,14 +1,14 @@
 import {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import registerImg from '../assets/images/registerBackground.jpg'
-import PhoneMockup from '../shared/PhoneMockup'
+import registerImg from '../../assets/images/registerBackground.jpg'
+import PhoneMockup from '../../shared/PhoneMockup'
 import axios from 'axios'
 
 
 // styles
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import '../assets/auth.css'
+import '../../assets/auth.css'
 
 
 const SignIn = () => {

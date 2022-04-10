@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { Link,Navigate,useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios'
-import useFetch from '../hooks/useFetch'
+import useFetch from '../../hooks/useFetch'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';

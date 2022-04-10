@@ -1,9 +1,9 @@
 import React from 'react'
 
-const listingType = (props) => {
+const ListingType = (props) => {
   return (
     <div>listingType</div>
   )
 }
 
-export default listingType
+export default ListingType

@@ -4,11 +4,15 @@ import { ToastContainer } from 'react-toastify';
 import HomePage from './layout/HomePage';
 import Explore from './components/Explore'
 import Offers from './components/Offers'
-import User from './components/User'
-import SignUp from './components/SignUp'
-import SignIn from './components/SignIn'
-import Verification from './components/Verification';
+import User from './components/users/User'
+import SignUp from './components/users/SignUp'
+import SignIn from './components/users/SignIn'
+import Verification from './components/users/Verification';
 import ErrorPage from './components/ErrorPage'
+
+// car listings
+
+import CarListing from './components/Cars/CarListing';
 
 function App() {
   return (
@@ -25,6 +29,7 @@ function App() {
             <Route path={'/user/:username/verify-account'} element={<Verification />} />
             <Route path='/*' element={<ErrorPage />}/>
           </Routes>
+          <CarListing />
       </Router>
       <ToastContainer />
       </div>
