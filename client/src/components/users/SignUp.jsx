@@ -38,7 +38,7 @@ const SignUp = () => {
       toast.success('registration successful please verify your account')
 
       navigate({
-        pathname: `/user/${username}/verify-account`
+        pathname: `/user/verify-account`
       })
     
      } catch (error) {
