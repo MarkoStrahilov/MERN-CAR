@@ -6,7 +6,6 @@ module.exports.getUser = async(req, res) => {
 
         const foundUser = await User.findOne({ username: req.params.username })
 
-
         if (!foundUser) {
 
             res.status(404).send({
@@ -41,7 +40,6 @@ module.exports.getMe = async(req, res) => {
     try {
 
         const currentUser = await User.findOne({ _id: req.user.id })
-
 
         if (!foundUser) {
 

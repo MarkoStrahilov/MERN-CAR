@@ -6,7 +6,7 @@ module.exports.listingOffers = async(req, res) => {
 
         const foundCars = await Car.find({ offer: true })
 
-        if (!foundCars) {
+        if (!foundCars.length) {
 
             return res.status(404).send({
                 status: 'fail',

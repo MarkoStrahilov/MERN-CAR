@@ -10,11 +10,14 @@ const { registerUser, loginUser, logoutUser, verifyAuthToken } = require('../con
 // require user functions
 const { getUser, getMe } = require('../controllers/user')
 
-// require car listings functions
+// require car listing functions
 const { createCarListing, getCarListing, getCarListings } = require('../controllers/carListing')
 
-// require listings offer function
+// require listing offers function
 const { listingOffers } = require('../controllers/offers')
+
+// require listing types
+const { listingsForSale, listingsForRent } = require('../controllers/listingTypes')
 
 // user authentication routes
 router.post('/api/v1/auth/create/user', asyncErrorHandle(registerUser))
@@ -30,14 +33,20 @@ router.get('/api/v1/user/:username', asyncErrorHandle(getUser))
 
 router.get('/api/v1/user/currentUser', asyncErrorHandle(getMe))
 
-// car listings routes
+// car listing routes
 router.get('/api/v1/get/car/listing/:id', asyncErrorHandle(getCarListing))
 
 router.post('/api/v1/create/car/listing', asyncErrorHandle(createCarListing))
 
 router.get('/api/v1/query/car/listings/data', asyncErrorHandle(getCarListings))
 
-// listings offers routes
+// listing offers routes
 router.get('/api/v1/get/listing/offers', asyncErrorHandle(listingOffers))
+
+// listing types
+router.get('/api/v1/get/listing/type/sale', asyncErrorHandle(listingsForSale))
+
+router.get('/api/v1/get/listing/type/rent', asyncErrorHandle(listingsForRent))
+
 
 module.exports = router

@@ -15,8 +15,17 @@ module.exports.getCarListings = async(req, res) => {
 
         const foundCars = await query;
 
+        if (!foundCars.length) {
 
-        res.status(200).send({
+            return res.status(404).send({
+                status: 'fail',
+                message: "cannot find any cars",
+                data: null
+            })
+
+        }
+
+        return res.status(200).send({
             status: 'success',
             dataLength: foundCars.length,
             data: { foundCars },
@@ -24,15 +33,13 @@ module.exports.getCarListings = async(req, res) => {
 
     } catch (error) {
 
-        res.status(400).send({
+        return res.status(400).send({
             status: 'fail',
             message: error,
             data: null
         })
 
     }
-
-
 
 }
 
