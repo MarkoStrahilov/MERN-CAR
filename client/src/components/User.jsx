@@ -14,7 +14,7 @@ const User = () => {
 
   const {data,error,loading} = useFetch(`http://localhost:2000/api/v1/user/${username}`)
 
-  const user = data?.data
+  const user = data?.data?.foundUser
 
   const logout = async() => {
     
@@ -40,20 +40,22 @@ const User = () => {
     return toast.error(error)
   }
 
-  if(user?.isVerified !== true ) {
+  console.log(data)
 
-    toast.error("account is not verified or doesn't exist")
-    return navigate({
-      pathname: `/sign-in`
+  // if(user?.isVerified !== true ) {
 
-    })
+  //   toast.error("account is not verified or doesn't exist")
+  //   return navigate({
+  //     pathname: `/sign-in`
 
-  }
+  //   })
+
+  // }
 
  return (
    <div className='app-user'>
      <p className='font-bold'>My Profile</p>
-     <p>{user.username}</p>
+     <p>{user?.username}</p>
      <button className='btn btn-accent' onClick={logout}>Logout</button>
    </div>
  )
@@ -63,14 +65,17 @@ export default User
 
 
 
-    // useEffect(() => {
+// useEffect(() => {
 
-    //    const getUserData = async () => {
-    //     const res = await axios.get(`http://localhost:2000/api/v1/user/${username}`)
-    //     setUser(res.data)
-    //     setLoading(false)
-    //    }
+  //const [currentUser,setCurrentUser] = useState(null)
+ // const [currentLoadData,setCurrentLoadData] = useState(true)
 
-    //    getUserData()
+//   const getUserData = async () => {
+//    const res = await axios.get(`http://localhost:2000/api/v1/user/${username}`)
+//    setCurrentUser(res.data)
+//    setCurrentLoadData(false)
+//   }
 
-    // }, [username])
+//   getUserData()
+
+// }, [username])

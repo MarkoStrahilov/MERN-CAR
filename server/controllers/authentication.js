@@ -39,7 +39,7 @@ module.exports.registerUser = async(req, res) => {
 
         await otpVerificationModel.save()
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             message: 'Created new user',
             data: { otpVerificationModel }
@@ -115,12 +115,35 @@ module.exports.loginUser = async(req, res, next) => {
 
 module.exports.logoutUser = async(req, res) => {
 
-    req.logout()
+    try {
 
-    res.status(200).send({
-        status: 'success',
-        messasge: 'successfuly logged out',
-    })
+        const currentUser = await User.findOne({ _id: req.user.id })
+
+        if (!currentUser) {
+
+            res.status(400).send({
+                status: "fail",
+                message: 'to start off, the account was not logged in'
+            })
+
+        }
+
+        req.logout()
+
+        res.status(200).send({
+            status: 'success',
+            messasge: 'successfuly logged out',
+        })
+
+    } catch (error) {
+
+        res.status(400).send({
+            status: "fail",
+            message: 'something went wrong'
+        })
+
+
+    }
 
 }
 
@@ -128,13 +151,13 @@ module.exports.verifyAuthToken = async(req, res) => {
 
     try {
 
-        const foundUser = await User.findOne({ username: req.params.username })
+        const foundUser = await User.findOne({ username: req.body.username })
 
         if (!foundUser) {
 
             return res.status(404).send({
                 status: 'fail',
-                message: 'user does not exist',
+                message: "cannot find existing user with those credentials",
                 data: null
             });
         }
@@ -167,8 +190,6 @@ module.exports.verifyAuthToken = async(req, res) => {
         }
 
         const validOtp = await bcrypt.compare(req.body.otp, foundOtpToken.otpSecret)
-
-
 
         if (!validOtp) {
 

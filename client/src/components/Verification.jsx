@@ -24,7 +24,7 @@ const Verification = () => {
 
             const user = {username,password, otp}
     
-            const res =  await axios.post(`http://localhost:2000/api/v1/auth/verify/auth/token/user/${username}`, user)
+            const res =  await axios.post(`http://localhost:2000/api/v1/auth/verify/auth/token/user`, user)
 
             console.log(res)
 

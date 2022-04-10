@@ -8,7 +8,7 @@ const { asyncErrorHandle } = require('../middlewares/middleware')
 const { registerUser, loginUser, logoutUser, verifyAuthToken } = require('../controllers/authentication')
 
 // require user functions
-const { getUser } = require('../controllers/user')
+const { getUser, getMe } = require('../controllers/user')
 
 // require car listings functions
 const { createCarListing, getCarListing, getCarListings } = require('../controllers/carListing')
@@ -23,10 +23,12 @@ router.post('/api/v1/auth/login/user', asyncErrorHandle(loginUser))
 
 router.get(`/api/v1/auth/logout/user`, asyncErrorHandle(logoutUser))
 
-router.post('/api/v1/auth/verify/auth/token/user/:username', asyncErrorHandle(verifyAuthToken))
+router.post('/api/v1/auth/verify/auth/token/user', asyncErrorHandle(verifyAuthToken))
 
 // user routes
 router.get('/api/v1/user/:username', asyncErrorHandle(getUser))
+
+router.get('/api/v1/user/currentUser', asyncErrorHandle(getMe))
 
 // car listings routes
 router.get('/api/v1/get/car/listing/:id', asyncErrorHandle(getCarListing))

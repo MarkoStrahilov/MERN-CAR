@@ -6,6 +6,7 @@ module.exports.getUser = async(req, res) => {
 
         const foundUser = await User.findOne({ username: req.params.username })
 
+
         if (!foundUser) {
 
             res.status(404).send({
@@ -18,7 +19,7 @@ module.exports.getUser = async(req, res) => {
         res.status(200).send({
             status: 'success',
             message: 'GET user data',
-            data: foundUser,
+            data: { foundUser }
         })
 
     } catch (error) {
@@ -30,5 +31,42 @@ module.exports.getUser = async(req, res) => {
         })
 
     }
+
+
+}
+
+
+module.exports.getMe = async(req, res) => {
+
+    try {
+
+        const currentUser = await User.findOne({ _id: req.user.id })
+
+
+        if (!foundUser) {
+
+            res.status(404).send({
+                status: "fail",
+                message: "Can't find user",
+                data: null
+            });
+        }
+
+        res.status(200).send({
+            status: 'success',
+            message: 'GET user data',
+            data: { currentUser }
+        })
+
+    } catch (error) {
+
+        res.status(404).send({
+            status: 'fail',
+            message: error,
+            data: null
+        })
+
+    }
+
 
 }

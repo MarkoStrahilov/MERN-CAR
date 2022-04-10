@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-const authenticateUserRoute = require('./routes/apiRoutes')
+const apiRoutes = require('./routes/apiRoutes')
 const User = require('./models/user')
 
 const app = express()
@@ -18,12 +18,17 @@ app.listen(2000, () => {
     console.log('server runing on port 2000 ...')
 })
 
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+
 mongoose.connect('mongodb://localhost:27017/car-rent', { useNewUrlParser: true, })
     .then(() => {
         console.log('database connected')
     }).catch(err => {
         console.log('mongoose error connection', err)
     })
+
+
+
 
 const sessionOptions = {
     secret: 'thisisnotagoodsecrettohave',
@@ -37,8 +42,6 @@ const sessionOptions = {
 }
 
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
-
 app.use(session(sessionOptions));
 app.use(passport.initialize())
 app.use(passport.session())
@@ -47,7 +50,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(cookieParser())
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
@@ -60,4 +63,4 @@ app.use((req, res, next) => {
 
 // routes
 
-app.use('/', authenticateUserRoute)
+app.use('/', apiRoutes)
