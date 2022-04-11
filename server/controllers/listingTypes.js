@@ -4,7 +4,7 @@ module.exports.listingsForSale = async(req, res) => {
 
     try {
 
-        const foundCars = await Car.find({ listingType: 'sale' })
+        const foundCars = await Car.find({ listingType: 'sale' }).sort({ createdAt: -1 })
 
         if (!foundCars.length) {
 
@@ -39,7 +39,7 @@ module.exports.listingsForRent = async(req, res) => {
 
     try {
 
-        const foundCars = await Car.find({ listingType: 'rent' })
+        const foundCars = await Car.find({ listingType: 'rent' }).sort({ createdAt: -1 })
 
         if (!foundCars.length) {
 

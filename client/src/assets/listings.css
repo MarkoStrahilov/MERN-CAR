@@ -1,0 +1,13 @@
+.car-listing {
+    display: flex;
+    align-items: center;
+    max-width: 85%;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.listing-card {
+    width: 50%;
+    padding: 1rem;
+    margin: 1.5rem 0;
+}

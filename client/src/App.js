@@ -29,8 +29,8 @@ function App() {
             <Route path='/user/:username' element={<User />}/>
             <Route path='/user/verify-account' element={<Verification />} />
             <Route path='/car-listing/:id' element={<SingleListing />}/>
-            <Route path='/car-listtings/for-sale' element={<ListingType query='sale'/>}/>
-            <Route path='/car-listtings/for-rent' element={<ListingType query='rent'/>}/>
+            <Route path='/car-listtings/for/sale' element={<ListingType query='sale'/>}/>
+            <Route path='/car-listtings/for/rent' element={<ListingType query='rent'/>}/>
             <Route path='/*' element={<ErrorPage />}/>
           </Routes>
       </Router>

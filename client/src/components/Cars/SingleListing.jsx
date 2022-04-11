@@ -16,7 +16,10 @@ const SingleListing = () => {
   console.log(data)
 
   return (
-    <div>singleListing</div>
+   <div>
+      <div>singleListing</div>
+        <p>{data?.data?.name}</p>
+   </div>
   )
 }
 

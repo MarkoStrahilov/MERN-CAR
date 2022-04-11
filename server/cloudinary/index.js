@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'paid-media-advertisements',
+        folder: 'car-rent',
         allowedFormats: ['png', 'jpg', 'jpeg']
     }
 })
