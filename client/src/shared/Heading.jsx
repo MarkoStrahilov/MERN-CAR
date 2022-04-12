@@ -1,13 +1,11 @@
 import React from 'react'
 
+import '../assets/sharedComponensStyle.css'
+
 const Heading = ({text}) => {
 
-    const styles = {
-
-    }
-
   return (
-    <div style={styles}>
+    <div className='text-heading'>
         {text}
     </div>
   )

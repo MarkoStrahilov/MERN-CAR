@@ -14,6 +14,9 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    accountType: {
+        type: String,
+    },
     carListings: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'

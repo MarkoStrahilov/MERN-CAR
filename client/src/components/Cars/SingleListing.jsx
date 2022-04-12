@@ -15,6 +15,14 @@ const SingleListing = () => {
 
   console.log(data)
 
+  if(error) {
+    console.log(error)
+  }
+
+  if(loading) {
+    return <div>Loading ...</div>
+  }
+
   return (
    <div>
       <div>singleListing</div>

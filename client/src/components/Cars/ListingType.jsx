@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 
+import ListingCard from './ListingCard'
+import Heading from '../../shared/Heading'
+
 import '../../assets/listings.css'
 
-import ListingCard from './ListingCard'
 
 const ListingType = ({query}) => {
 
@@ -28,8 +30,7 @@ const ListingType = ({query}) => {
 
   return (
     <div>
-      <h1>Explore Car Listings For {query}</h1>
-      <div> listingType, {query}</div>
+      <Heading text={`Explore Car Listings For ${query.toUpperCase()}`} />
       <div className='car-listing'>
       {listings && listings.map((list) => (
          <ListingCard details={list} img={carImg} key={list._id}/>
