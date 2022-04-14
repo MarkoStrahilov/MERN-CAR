@@ -74,6 +74,7 @@ module.exports.loginUser = async(req, res, next) => {
                 });
 
             }
+
             req.login(user, err, async function() {
 
                 if (err) throw err;
