@@ -83,7 +83,7 @@ module.exports.loginUser = async(req, res, next) => {
 
                 if (foundUser.isVerified === false) {
 
-                    res.status(403).send({
+                    return res.status(403).send({
                         status: 'fail',
                         message: 'Unable to sign in to your account',
                         reason: 'Account is not verified, please verify your account in order to use our service'
@@ -91,7 +91,7 @@ module.exports.loginUser = async(req, res, next) => {
 
                 } else {
 
-                    res.status(200).send({
+                    return res.status(200).send({
                         status: 'success',
                         message: 'successfuly signed in',
                         data: foundUser
@@ -105,7 +105,7 @@ module.exports.loginUser = async(req, res, next) => {
 
     } catch (error) {
 
-        res.status(401).send({
+        return res.status(401).send({
             status: 'fail',
             message: error,
             data: null
@@ -122,7 +122,7 @@ module.exports.logoutUser = async(req, res) => {
 
         if (!currentUser) {
 
-            res.status(400).send({
+            return res.status(400).send({
                 status: "fail",
                 message: 'to start off, the account was not logged in'
             })
@@ -131,14 +131,14 @@ module.exports.logoutUser = async(req, res) => {
 
         req.logout()
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             messasge: 'successfuly logged out',
         })
 
     } catch (error) {
 
-        res.status(400).send({
+        return res.status(400).send({
             status: "fail",
             message: 'something went wrong'
         })
@@ -208,6 +208,7 @@ module.exports.verifyAuthToken = async(req, res) => {
         await foundUser.save()
 
         req.login(foundUser, function(err) {
+
             if (err) { return next(err); }
 
             return res.status(200).send({
@@ -215,7 +216,6 @@ module.exports.verifyAuthToken = async(req, res) => {
                 messasge: 'auth token verified',
                 data: { validOtp, foundUser }
             })
-
 
         });
 
