@@ -16,14 +16,18 @@ const carSchema = new Schema({
         trim: true
     },
     images: [{
-        url: String,
-        filename: String
+        type: String,
+    }],
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Review',
+        trim: true
     }],
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    insurence: {
+    insurance: {
         type: String,
         trim: true
     },

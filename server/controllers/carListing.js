@@ -49,11 +49,11 @@ module.exports.getCarListing = async(req, res) => {
 
         const { id } = req.params
 
-        const foundCarListing = await Car.findOne({ _id: id })
+        const foundCarListing = await Car.findOne({ _id: id }).populate('owner')
 
         if (!foundCarListing) {
 
-            res.status(404).send({
+            return res.status(404).send({
                 status: 'fail',
                 message: "Can't find car listing with provided id",
                 data: null
@@ -61,7 +61,7 @@ module.exports.getCarListing = async(req, res) => {
 
         }
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             message: 'GET car listing data',
             data: foundCarListing,
@@ -70,7 +70,7 @@ module.exports.getCarListing = async(req, res) => {
 
     } catch (error) {
 
-        res.status(404).send({
+        return res.status(404).send({
             status: 'fail',
             message: error,
             data: null

@@ -1,3 +1,5 @@
+/* listing card */
+
 .car-listing {
     display: flex;
     flex-wrap: wrap;
@@ -15,4 +17,66 @@
 
 .listing-card-img {
     width: 100%;
+}
+
+
+/* listing details */
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-container {
+    width: 60%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.listing-image {
+    width: 90vw;
+    height: 60vh;
+    border-radius: 10px;
+}
+
+.right-arrow {
+    position: absolute;
+    top: 50%;
+    right: 32px;
+    font-size: 3rem;
+    color: #000;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.left-arrow {
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    font-size: 3rem;
+    color: #000;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.active {
+    transition: .4s ease;
+    display: initial;
+}
+
+.inactive {
+    transition: .4s ease;
+    display: none;
+}
+
+.listing-name {
+    font-size: 5rem;
+}
+
+.block-element {
+    margin: 2rem 0;
 }
