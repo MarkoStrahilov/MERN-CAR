@@ -22,7 +22,7 @@ export const Carousel = ({images}) => {
 
     <div className="carousel-container">
     {Array.isArray(images) && images.map((image,index) => (
-      <div className={current === index ? 'active' : 'inactive'} key={index}>
+      <div className={current === index ? 'listing-carousel active' : 'listing-carousel inactive'} key={index}>
         <img src={image} alt="" className='listing-image' />
       </div>
     ))}

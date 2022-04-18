@@ -25,7 +25,7 @@ const sendEmail = async options => {
         if (err) {
             console.log('Error while sending mail: ' + err)
         } else {
-            console.log('mail send: %s', info.messageId);
+            console.log('opt verification token sent to:', info.messageId);
         }
     })
 
