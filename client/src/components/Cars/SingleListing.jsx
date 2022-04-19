@@ -2,6 +2,8 @@ import React from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Container from '../../shared/Container'
 import { Carousel } from '../../shared/Carousel'
+import MainContentListing from './MainContentListing'
+import SidebarListing from './SidebarListing'
 
 import useFetch from '../../hooks/useFetch'
 
@@ -33,19 +35,13 @@ const SingleListing = () => {
   }
 
   return (
-   <div>
+   <>
           <Carousel images={listing?.images}/>
         <Container>
-          <div className="listing-details">
-            <h1 className='listing-name'>{listing?.name}</h1>
-            <p className="text-dark-500 text-xl italic text-right">{listing?.category}</p>
-          </div>
-          <div className="mt-10 mb-10">
-          <label className="block text-gray-700 text-sm font-bold mb-2">DESCRIPTION</label>
-            <p>{listing?.description}</p>
-          </div>
+          <MainContentListing data={listing}/>
+          <SidebarListing user={listing?.owner}/>
         </Container>
-   </div> 
+   </> 
   )
 }
 

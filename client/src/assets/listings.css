@@ -22,6 +22,22 @@
 
 /* listing details */
 
+.car-listing-container {
+    max-width: 70%;
+    margin: 1rem auto;
+    display: flex;
+}
+
+.main-content-listing {
+    flex: 4;
+    padding: 0 1rem;
+}
+
+.sidebar-listing {
+    flex: 2;
+    padding: 0 1.3rem;
+}
+
 .carousel-container {
     position: relative;
     display: flex;
@@ -36,8 +52,8 @@
 }
 
 .listing-image {
-    width: 90vw;
-    height: 60vh;
+    width: 100vw;
+    height: 70vh;
     border-radius: 10px;
 }
 
@@ -76,7 +92,11 @@
 }
 
 .listing-name {
-    font-size: 5rem;
+    font-size: 3.5rem;
+}
+
+.listing-category {
+    color: #898989;
 }
 
 .block-element {

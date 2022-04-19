@@ -1,9 +1,11 @@
 import React from 'react'
 
+import '../assets/listings.css'
+
 const Container = ({children}) => {
   
   return (
-    <div>{children}</div>
+    <div className='car-listing-container'>{children}</div>
   )
 
 }
