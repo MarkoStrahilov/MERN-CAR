@@ -13,6 +13,16 @@ module.exports.getCarListings = async(req, res) => {
 
         const query = Car.find(queryObject);
 
+        if (!query) {
+
+            return res.status(404).send({
+                status: 'fail',
+                message: "cannot find any cars",
+                data: null
+            })
+
+        }
+
         const foundCars = await query;
 
         if (!foundCars.length) {
@@ -102,6 +112,28 @@ module.exports.createCarListing = async(req, res) => {
             status: 'success',
             message: 'successfuly created new car listing',
             data: newCarListing
+        })
+
+    } catch (error) {
+
+        res.status(400).send({
+            status: 'fail',
+            message: error,
+            data: null
+        })
+
+    }
+
+}
+
+module.exports.findBasedOnLocation = async() => {
+
+    try {
+
+        res.status(200).send({
+            status: 'success',
+            message: 'find by location',
+            data: null
         })
 
     } catch (error) {
