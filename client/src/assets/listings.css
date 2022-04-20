@@ -102,3 +102,19 @@
 .block-element {
     margin: 2rem 0;
 }
+
+.badge-offer-av {
+    margin-left: .6rem;
+    margin-bottom: .8rem;
+}
+
+.listing-adv-details {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.adv-detail {
+    margin: .3rem 0;
+    width: 50%;
+}

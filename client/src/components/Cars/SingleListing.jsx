@@ -34,12 +34,20 @@ const SingleListing = () => {
    toast.error("Listing doesn't exist")
   }
 
+  const listingPrice = {
+    regularPrice: listing?.regularPrice,
+    discountedPrice: listing?.discountedPrice,
+    offer: listing?.offer,
+    type: listing?.listingType
+  }
+
+
   return (
    <>
-          <Carousel images={listing?.images}/>
+        <Carousel images={listing?.images}/>
         <Container>
           <MainContentListing data={listing}/>
-          <SidebarListing user={listing?.owner}/>
+          <SidebarListing user={listing?.owner} price={listingPrice}/>
         </Container>
    </> 
   )
