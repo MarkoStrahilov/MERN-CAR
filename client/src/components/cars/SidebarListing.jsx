@@ -21,12 +21,30 @@ const SidebarListing = ({user, price}) => {
         <h1 className='text-gray-700 font-bold text-xl'>CAR PRICING</h1>
         {price && price?.type === 'sale' ? 
         <div className=''>
-              <h1 className='text-3xl'>${price?.regularPrice} <span className='text-gray-700 text-sm font-bold'>SALE PRICE</span></h1>
+              <div className='mt-5'>
+           <div class="flex w-full">
+              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">
+              <h1 className='text-3xl'>${price?.regularPrice} <span className='text-gray-700 text-sm font-bold'>PRICE</span></h1></div>
+               <div class="divider divider-horizontal"/>
+              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">{price?.offer === true ? 
+              <div className='flex items-center'> 
+                <h1 className='text-3xl'>${price?.discountedPrice} <span className='text-gray-700 text-sm font-bold'>SALE PRICE</span>
+                </h1>
+                <div className="badge-success text-xs text-center badge-offer-av">AVAILABLE OFFER</div>
+                </div>
+               : 
+               <div>
+                  <span className='text-gray-700 text-xl font-bold'>OFFER NOT AVAILABLE</span>
+                </div>}
+                 </div>
+            </div>
+         </div>
         </div>
          : 
          <div className='mt-5'>
            <div class="flex w-full">
-              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start"><h1 className='text-3xl'>${price?.regularPrice} <span className='text-gray-700 text-sm font-bold'>PER DAY</span></h1></div>
+              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">
+                <h1 className='text-3xl'>${price?.regularPrice} <span className='text-gray-700 text-sm font-bold'>PER DAY</span></h1></div>
                <div class="divider divider-horizontal"/>
               <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">{price?.offer === true ? 
               <div className='flex items-center'> 
