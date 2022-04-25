@@ -5,8 +5,6 @@ import '../../assets/listings.css'
 
 const SidebarListing = ({user, price}) => {
 
-  console.log(price)
-
     return (
     <div className='sidebar-listing'>
         <h1 className='mt-7 text-3xl'>About The Host</h1>
