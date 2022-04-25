@@ -4,6 +4,7 @@ import Container from '../../shared/Container'
 import { Carousel } from '../../shared/Carousel'
 import MainContentListing from './MainContentListing'
 import SidebarListing from './SidebarListing'
+import Map from '../Map'
 
 import useFetch from '../../hooks/useFetch'
 
@@ -49,6 +50,7 @@ const SingleListing = () => {
           <MainContentListing data={listing}/>
           <SidebarListing user={listing?.owner} price={listingPrice}/>
         </Container>
+        <Map location={listing?.location}/>
    </> 
   )
 }
