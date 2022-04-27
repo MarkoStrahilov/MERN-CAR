@@ -14,9 +14,16 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    accountImage: {
+        type: String,
+    },
     accountType: {
         type: String,
     },
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+    }],
     carListings: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'

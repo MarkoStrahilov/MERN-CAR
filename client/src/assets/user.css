@@ -1,0 +1,32 @@
+.user-heading-section {
+    padding: 1rem;
+}
+
+.user-heading {
+    background: #7F7FD5;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    width: 100%;
+    height: 30vh;
+}
+
+.user-personal-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(-2rem);
+    width: 70%;
+    margin: auto;
+}
+
+.user-df-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 50%;
+    height: 15vh;
+    border-radius: 100%;
+    margin: 0 1rem;
+}

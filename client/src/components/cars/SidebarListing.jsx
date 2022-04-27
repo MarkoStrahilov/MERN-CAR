@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 
 import '../../assets/listings.css'
 
@@ -7,7 +8,8 @@ const SidebarListing = ({user, price}) => {
 
     return (
     <div className='sidebar-listing'>
-        <h1 className='mt-7 text-3xl'>About The Host</h1>
+       <div className='user-section'>
+       <h1 className='mt-7 text-3xl'>About The Host</h1>
     <div className="flex items-center pt-10 py-4">
       <img className="w-10 h-10 rounded-full mr-4" src="/img/jonathan.jpg" alt=""/>
       <div className="text-sm">
@@ -15,16 +17,18 @@ const SidebarListing = ({user, price}) => {
         <p className="text-gray-600">Joined <b>{moment(user?.createdAt).format('LL')}</b></p>
       </div>
     </div>
+    <Link to={`/user/${user?.username}`} className='btn btn-sm btn-info'>View Profile</Link>
+       </div>
     <div className="pt-10 py-4">
         <h1 className='text-gray-700 font-bold text-xl'>CAR PRICING</h1>
         {price && price?.type === 'sale' ? 
         <div className=''>
               <div className='mt-5'>
-           <div class="flex w-full">
-              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">
+           <div className="flex w-full">
+              <div className="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">
               <h1 className='text-3xl'>${price?.regularPrice} <span className='text-gray-700 text-sm font-bold'>PRICE</span></h1></div>
-               <div class="divider divider-horizontal"/>
-              <div class="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">{price?.offer === true ? 
+               <div className="divider divider-horizontal"/>
+              <div className="grid pt-2 pb-2 flex-grow card bg-base-100 rounded-box place-items-start">{price?.offer === true ? 
               <div className='flex items-center'> 
                 <h1 className='text-3xl'>${price?.discountedPrice} <span className='text-gray-700 text-sm font-bold'>SALE PRICE</span>
                 </h1>

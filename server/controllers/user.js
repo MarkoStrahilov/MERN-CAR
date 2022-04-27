@@ -31,7 +31,6 @@ module.exports.getUser = async(req, res) => {
 
     }
 
-
 }
 
 
@@ -65,6 +64,5 @@ module.exports.getMe = async(req, res) => {
         })
 
     }
-
 
 }

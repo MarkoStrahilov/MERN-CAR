@@ -1,6 +1,9 @@
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        return res.redirect('/sign-in')
+        return res.status(401).send({
+            status: 'fail',
+            message: 'Access denied, unauthorized'
+        })
     }
     next()
 }

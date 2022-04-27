@@ -3,6 +3,8 @@ import { Link,Navigate,useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios'
 import useFetch from '../../hooks/useFetch'
 
+import ProfileHeading from './ProfileHeading';
+
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,8 +42,6 @@ const User = () => {
     return toast.error(error)
   }
 
-  console.log(data)
-
   // if(user?.isVerified !== true ) {
 
   //   toast.error("account is not verified or doesn't exist")
@@ -54,9 +54,7 @@ const User = () => {
 
  return (
    <div className='app-user'>
-     <p className='font-bold'>My Profile</p>
-     <p>{user?.username}</p>
-     <button className='btn btn-accent' onClick={logout}>Logout</button>
+    <ProfileHeading info={data?.data?.foundUser}/>
    </div>
  )
 }
