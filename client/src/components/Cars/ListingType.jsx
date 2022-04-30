@@ -12,7 +12,6 @@ const ListingType = ({query}) => {
   const {data,error,loading} = useFetch(`http://localhost:2000/api/v1/get/listing/type/${query}`)
 
   const listings = data?.data?.foundCars
-  console.log(listings)
 
   if(loading) {
     return <h1>Loading...</h1>

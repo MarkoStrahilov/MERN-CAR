@@ -8,7 +8,7 @@ const ListingCard = ({details, img}) => {
   const carCreatedAt = moment(details.createdAt).calendar()
 
   const limitedText = details?.description.substring(0, 150) + "..."
-  console.log(details)
+
   return (
 <Link className="max-w-sm rounded overflow-hidden shadow-lg" to={`/car-listing/${details?._id}`}>
   <img className="w-full" src={img} alt="Sunset in the mountains" />
@@ -28,7 +28,7 @@ const ListingCard = ({details, img}) => {
   <div className="px-6 pt-4 pb-2">
     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{details?.category}</span>
     {details?.offer === true ? (
-      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Offer Available <div class="badge badge-xs bg-green-500 pt-2"></div></span>
+      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Offer Available <div className="badge badge-xs bg-green-500 pt-2"></div></span>
     ):  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{details?.listingType === 'sale' ? `for sale $${details?.regularPrice}` : `for rent $${details?.regularPrice}`}</span>}
   </div>
 </Link>

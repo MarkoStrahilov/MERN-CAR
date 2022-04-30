@@ -17,15 +17,11 @@ const SignUp = () => {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   
-
-
     const styles = {
         width:"100%",
         height: "100vh",
         backgroundImage:  "linear-gradient(90deg, #cde3e6, #00a8ff)"
     }
-
-
 
     const onSubmit = async(e) => {
 

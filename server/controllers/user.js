@@ -4,7 +4,7 @@ module.exports.getUser = async(req, res) => {
 
     try {
 
-        const foundUser = await User.findOne({ username: req.params.username })
+        const foundUser = await User.findOne({ username: req.params.username }).populate('carListings')
 
         if (!foundUser) {
 

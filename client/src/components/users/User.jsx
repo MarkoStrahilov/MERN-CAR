@@ -3,7 +3,8 @@ import { Link,Navigate,useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios'
 import useFetch from '../../hooks/useFetch'
 
-import ProfileHeading from './ProfileHeading';
+import ProfileHeading from './accountDetails/ProfileHeading';
+import ProfileMain from './accountDetails/ProfileMain';
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,38 +43,13 @@ const User = () => {
     return toast.error(error)
   }
 
-  // if(user?.isVerified !== true ) {
-
-  //   toast.error("account is not verified or doesn't exist")
-  //   return navigate({
-  //     pathname: `/sign-in`
-
-  //   })
-
-  // }
-
  return (
    <div className='app-user'>
-    <ProfileHeading info={data?.data?.foundUser}/>
+    <ProfileHeading info={user}/>
+    <ProfileMain info={user}/>
    </div>
  )
 }
 
 export default User
 
-
-
-// useEffect(() => {
-
-  //const [currentUser,setCurrentUser] = useState(null)
- // const [currentLoadData,setCurrentLoadData] = useState(true)
-
-//   const getUserData = async () => {
-//    const res = await axios.get(`http://localhost:2000/api/v1/user/${username}`)
-//    setCurrentUser(res.data)
-//    setCurrentLoadData(false)
-//   }
-
-//   getUserData()
-
-// }, [username])
