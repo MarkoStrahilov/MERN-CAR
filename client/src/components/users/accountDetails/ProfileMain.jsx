@@ -1,10 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import CreateListingInSteps from './CreateListingInSteps'
 
 const ProfileMain = ({info}) => {
 
   return (
     <div className='container mx-auto mt-20'>
+      <div className="flex justify-end">
+      <CreateListingInSteps />
+      </div>
        {info?.carListings.length !== 0 ? <p className='text-5xl mb-10'>See {info?.username}'s available car listings</p> : <p className='text-5xl'>{info?.username} doesn't have listings available</p>}
       <div className="user-details-listing-card flex flex-wrap">
       {info?.carListings.length !== 0 && info.carListings.map((listing) => (
