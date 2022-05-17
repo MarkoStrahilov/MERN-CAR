@@ -10,7 +10,6 @@ import SignIn from './components/users/SignIn'
 import Verification from './components/users/Verification';
 import ErrorPage from './components/ErrorPage'
 
-
 // car listings
 import SingleListing from './components/cars/SingleListing';
 import ListingType from './components/cars/ListingType';

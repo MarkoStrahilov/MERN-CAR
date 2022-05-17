@@ -1,0 +1,16 @@
+.btn-file {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+    padding-top: .9rem;
+}
+
+.btn-file input[type=file] {
+    text-align: center;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
