@@ -5,6 +5,8 @@ import AdvancedDetails from './AdvancedDetails'
 import Pricing from './Pricing'
 import ListingOverview from './ListingOverview'
 
+import  '../../../assets/modelSteps.css'
+
 const Steps = ({page}) => {
 
     const [listingDetailsData,setListingDetailsData] = useState({

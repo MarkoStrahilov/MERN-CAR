@@ -14,3 +14,7 @@
     cursor: inherit;
     display: block;
 }
+
+.container-steps {
+    max-height: 60vh;
+}

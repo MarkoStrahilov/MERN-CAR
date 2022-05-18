@@ -21,13 +21,19 @@ const CreateListingInSteps = () => {
             <li className={`step ${page === 3 ? 'step-info' : null}`}>Lising Overview</li>
           </ul>
           <Steps page={page}/>
-          <div className='flex justify-evenly mt-8 pl-4 pr-4'>
+          <div className='flex justify-evenly mt-10 pl-4 pr-4'>
           <div>
-                 <button className='btn btn-sm bg-sky-600' disabled={page === 0}  onClick={() => {setPage((curr) => curr - 1)}}>Back</button>
+                 <button className='btn btn-sm bg-sky-600' disabled={page === 0}  onClick={() => {setPage((curr) => curr - 1)}}>back</button>
           </div>
-              <div>
-                 <button className='btn btn-sm bg-sky-600' disabled={page === titles.length -1}  onClick={() => {setPage((curr) => curr + 1)}}>Next</button>
-             </div>
+            <div>
+            <button className='btn btn-sm bg-sky-600' onClick={() => {
+              if(page === titles.length - 1) {
+                  alert('success')
+              } else {
+                setPage(curr => curr + 1)
+              }
+            }}>{page === titles.length - 1 ? "submit" : "next"}</button>
+            </div>
           </div>
           </label>
       </label>
