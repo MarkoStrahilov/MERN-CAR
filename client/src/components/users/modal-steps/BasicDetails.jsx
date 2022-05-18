@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
 
-const BasicDetails = ({basciDetailsData,setBasicDetailsData}) => {
+const BasicDetails = ({listingDetailsData,setListingDetailsData}) => {
 
   return (
     <div>
@@ -10,8 +9,8 @@ const BasicDetails = ({basciDetailsData,setBasicDetailsData}) => {
       <label class="block text-gray-700 text-sm mb-2" for="name">
         Listing  Name
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" value={basciDetailsData.name} onChange={(e) => {setBasicDetailsData({
-        ...basciDetailsData,
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" value={listingDetailsData.name} onChange={(e) => {setListingDetailsData({
+        ...listingDetailsData,
         name: e.target.value
       })}}/>
     </div>
@@ -19,8 +18,8 @@ const BasicDetails = ({basciDetailsData,setBasicDetailsData}) => {
       <label class="block text-gray-700 text-sm mb-2" for="category">
         Listing Category
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" value={basciDetailsData.category} onChange={(e) => {setBasicDetailsData({
-        ...basciDetailsData,
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" value={listingDetailsData.category} onChange={(e) => {setListingDetailsData({
+        ...listingDetailsData,
         category: e.target.value
       })}}/>
     </div>
@@ -28,8 +27,8 @@ const BasicDetails = ({basciDetailsData,setBasicDetailsData}) => {
       <label class="block text-gray-700 text-sm mb-2" for="type">
         Listing Type
       </label>  
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="type" type="text" value={basciDetailsData.type} onChange={(e) => {setBasicDetailsData({
-        ...basciDetailsData,
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="type" type="text" value={listingDetailsData.type} onChange={(e) => {setListingDetailsData({
+        ...listingDetailsData,
         type: e.target.value
       })}}/>
     </div>

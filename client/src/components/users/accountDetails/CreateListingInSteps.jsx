@@ -5,6 +5,7 @@ import { useState } from 'react'
 const CreateListingInSteps = () => {
 
   const [page,setPage] = useState(0)
+  const titles = ['basic', 'more', 'pricing', 'overview']
 
   return (
   <div>
@@ -21,17 +22,12 @@ const CreateListingInSteps = () => {
           </ul>
           <Steps page={page}/>
           <div className='flex justify-evenly mt-8 pl-4 pr-4'>
-          {page <=3 && page !== -1 && (
-            <div>
-                <button className='btn btn-sm bg-sky-600'  onClick={() => {setPage((curr) => curr - 1)}}>Back</button>
-            </div>
-          )}
-            {page <= 3 && (
-            <div>
-                 <button className='btn btn-sm bg-sky-600'  onClick={() => {setPage((curr) => curr + 1)}}>Next</button>
+          <div>
+                 <button className='btn btn-sm bg-sky-600' disabled={page === 0}  onClick={() => {setPage((curr) => curr - 1)}}>Back</button>
+          </div>
+              <div>
+                 <button className='btn btn-sm bg-sky-600' disabled={page === titles.length -1}  onClick={() => {setPage((curr) => curr + 1)}}>Next</button>
              </div>
-  
-          )}
           </div>
           </label>
       </label>

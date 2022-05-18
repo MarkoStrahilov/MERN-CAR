@@ -3,7 +3,7 @@ import Select from 'react-select'
 import '../../../assets/modelSteps.css'
 
 
-const AdvancedDetails = ({advancedDetailsData,setAdvancedDetailsData}) => {
+const AdvancedDetails = ({listingDetailsData,setListingDetailsData}) => {
  
   const featureOptions = [
     { value: 'Extra Dors', label: 'Extra Doors' },
@@ -41,8 +41,8 @@ const AdvancedDetails = ({advancedDetailsData,setAdvancedDetailsData}) => {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="description" type="text" value={advancedDetailsData.description} onChange={(e) => {setAdvancedDetailsData({
-        ...advancedDetailsData,
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="description" type="text" value={listingDetailsData.description} onChange={(e) => {setListingDetailsData({
+        ...listingDetailsData,
         description: e.target.value
       })}}/>
     </div>
@@ -50,8 +50,8 @@ const AdvancedDetails = ({advancedDetailsData,setAdvancedDetailsData}) => {
       <label class="block text-gray-700 text-sm mb-2" for="insurance">
         Insurance
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="insurance" type="text" value={advancedDetailsData.insurance} onChange={(e) => {setAdvancedDetailsData({
-        ...advancedDetailsData,
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="insurance" type="text" value={listingDetailsData.insurance} onChange={(e) => {setListingDetailsData({
+        ...listingDetailsData,
         insurance: e.target.value
       })}}/>
     </div>

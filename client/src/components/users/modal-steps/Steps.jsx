@@ -7,13 +7,10 @@ import ListingOverview from './ListingOverview'
 
 const Steps = ({page}) => {
 
-    const [basciDetailsData,setBasicDetailsData] = useState({
+    const [listingDetailsData,setListingDetailsData] = useState({
         name: "",
         category: "" ,
-        type: "" 
-    })
-
-    const [advancedDetailsData, setAdvancedDetailsData] = useState({
+        type: "",
         description: "",
         images: [],
         features: [],
@@ -22,29 +19,21 @@ const Steps = ({page}) => {
         location: {
             pickup: "",
             return: "",
-        }
-    })
-
-    const [pricing,setPricing] = useState({
+        },
+        offer: "",
         regularPrice: 0,
         discountedPrice: 0
     })
 
-    const listingData = {
-       basicData: basciDetailsData,
-       advancedData: advancedDetailsData,
-       pricingData: pricing
-    }
-
     const pageDisplay = () => {
        if(page === 0) {
-           return <BasicDetails basciDetailsData={basciDetailsData} setBasicDetailsData={setBasicDetailsData}/>
+           return <BasicDetails listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
        } else if (page === 1) {
-           return <AdvancedDetails advancedDetailsData={advancedDetailsData} setAdvancedDetailsData={setAdvancedDetailsData}/>
+           return <AdvancedDetails listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
        } else if (page === 2) {
-        return <Pricing pricing={pricing} setPricing={setPricing}/>
+        return <Pricing listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
        } else if (page === 3) {
-        return <ListingOverview data={listingData}/>
+        return <ListingOverview data={listingDetailsData}/>
        }
     }
 
