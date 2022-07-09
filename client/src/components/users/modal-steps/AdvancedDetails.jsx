@@ -1,6 +1,12 @@
 import React from 'react'
 import Select from 'react-select'
 import '../../../assets/modelSteps.css'
+const algoliasearch = require('algoliasearch')
+const client = algoliasearch('SI0OK3V86T', '442f43aabbd2061676b51781fe195df3')
+const index = client.initIndex('test_index')
+const record = { objectID: 1, name: 'test_record' }
+
+
 
 
 const AdvancedDetails = ({listingDetailsData,setListingDetailsData}) => {
@@ -17,6 +23,12 @@ const AdvancedDetails = ({listingDetailsData,setListingDetailsData}) => {
     { value: 'No Pets', label: 'No Pets' },
     { value: 'No Eating', label: 'No Eating' }
   ]
+
+  index.saveObject(record).wait()
+
+  index
+  .search('test_record')
+  .then(({ hits }) => console.log(hits[0]))
 
   return (
 

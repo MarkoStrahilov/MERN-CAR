@@ -1,10 +1,22 @@
 import React, { useState } from 'react'
+import { css } from "@emotion/react";
 import useFetch from '../../hooks/useFetch'
 
 import ListingCard from './ListingCard'
 import Heading from '../../shared/Heading'
 
+import BounceLoader from 'react-spinners/BounceLoader'
+
 import '../../assets/listings.css'
+
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  postion: absolute;
+  top: 40vh;
+`;
+
 
 
 const ListingType = ({query}) => {
@@ -14,7 +26,7 @@ const ListingType = ({query}) => {
   const listings = data?.data?.foundCars
 
   if(loading) {
-    return <h1>Loading...</h1>
+    return <BounceLoader css={override} size={150} color={"#86A8E7"}/>
   }
 
   if(error) {

@@ -14,12 +14,12 @@ const ListingCard = ({details, img}) => {
   <img className="w-full" src={img} alt="Sunset in the mountains" />
   <div className="px-6 py-4">
     <div className="font-bold text-xl mb-2">{details?.name}</div>
-    <p className="text-gray-700 text-base">
+    <p className="text-gray-500 text-base">
       {limitedText}
     </p>
   </div>
   <div className="flex items-center px-6 py-4">
-      <img className="w-10 h-10 rounded-full mr-4" src="/img/jonathan.jpg" alt=""/>
+      <img className="w-10 h-10 rounded-full mr-4" src='../../assets/images/jonathan.jpg' alt=""/>
       <div className="text-sm">
         <p className="text-gray-900 leading-none mb-1">{details?.owner?.username}</p>
         <p className="text-gray-600">Joined <b>{moment(details?.owner.createdAt).format('LL')}</b></p>

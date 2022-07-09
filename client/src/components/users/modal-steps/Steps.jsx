@@ -28,15 +28,24 @@ const Steps = ({page}) => {
     })
 
     const pageDisplay = () => {
+
        if(page === 0) {
+
            return <BasicDetails listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
-       } else if (page === 1) {
-           return <AdvancedDetails listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
-       } else if (page === 2) {
-        return <Pricing listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
-       } else if (page === 3) {
-        return <ListingOverview data={listingDetailsData}/>
-       }
+      
+        } else if (page === 1) {
+          
+            return <AdvancedDetails listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
+      
+        } else if (page === 2) {
+        
+            return <Pricing listingDetailsData={listingDetailsData} setListingDetailsData={setListingDetailsData}/>
+      
+        } else if (page === 3) {
+       
+            return <ListingOverview data={listingDetailsData}/>
+      
+        }
     }
 
   return (

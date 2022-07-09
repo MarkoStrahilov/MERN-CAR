@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 
+import UserContact from './UserContact'
+
 import '../../../assets/user.css'
 
 const ProfileHeading = ({info}) => {
@@ -15,7 +17,7 @@ const ProfileHeading = ({info}) => {
           Joined {moment(info?.createdAt).format('LL')}
         </div>
        </div>
-        <button className='btn-contact-user btn bg-sky-600'>contact</button>
+        <UserContact user={info}/>
       </div>
     </div>
   )

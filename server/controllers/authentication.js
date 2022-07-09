@@ -223,13 +223,53 @@ module.exports.verifyAuthToken = async(req, res) => {
 
     } catch (error) {
 
-        res.status(401).send({
+        return res.status(401).send({
             status: 'fail',
-            message: error,
-            data: null
+            message: error.message,
         });
 
 
     }
 
+}
+
+module.exports.passwordReset = async(req, res) => {
+
+    try {
+
+        const foundUser = await User.findOne({ email: req.body.email })
+
+        if (!foundUser) {
+
+            return res.status(404).send({
+                status: 'fail',
+                message: 'Cannot find user with those credentials',
+            });
+
+        }
+
+        const resetToken = foundUser.createPasswordResetToken()
+        await foundUser.save({ validateBeforeSave: false });
+
+        const passwordResetTest = `Forgot Your Password?! Here is your reset token ${resetToken} If you didnt request a password reset then please ignore this email`
+
+        await sendEmail({
+            email: req.body.email,
+            subject: 'Password Reset',
+            text: passwordResetTest
+        })
+
+        res.status(200).send({
+            status: 'success',
+            message: "Successfuly send reset token",
+            data: { resetToken }
+        })
+
+    } catch (error) {
+
+        return res.status(401).send({
+            status: 'fail',
+            message: error.message,
+        });
+    }
 }

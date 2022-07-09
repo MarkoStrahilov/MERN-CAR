@@ -32,7 +32,7 @@ const CreateListingInSteps = () => {
               } else {
                 setPage(curr => curr + 1)
               }
-            }}>{page === titles.length - 1 ? "submit" : "next"}</button>
+            }}>{page === titles.length - 1 ? "create" : "next"}</button>
             </div>
           </div>
           </label>

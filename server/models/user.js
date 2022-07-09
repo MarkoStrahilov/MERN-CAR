@@ -24,6 +24,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Review'
     }],
+    contactDetails: {
+        type: Schema.Types.ObjectId,
+        ref: 'ContactDetails'
+    },
     carListings: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'

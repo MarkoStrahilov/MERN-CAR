@@ -81,6 +81,7 @@ return (
             <input type="password" id='password' className="input input-bordered input-accent w-full max-w-xs" value={password}  onChange={(e) => setPassword(e.target.value)}/>
           </div>
           <div className="label">
+          <span className="label-text-alt font-bold mt-2">Forgot your password ? reset it here <Link to={'/password-reset'} style={{'borderBottom': "1px solid #000"}}>here</Link></span>
           <span className="label-text-alt font-bold mt-2">already have an account ? sign in <Link to={'/sign-up'} style={{'borderBottom': "1px solid #000"}}>here</Link></span>
           </div>
             <button className='btn btn-accent mt-8 border'>Sign In</button>

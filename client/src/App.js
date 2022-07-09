@@ -9,6 +9,7 @@ import SignUp from './components/users/SignUp'
 import SignIn from './components/users/SignIn'
 import Verification from './components/users/Verification';
 import ErrorPage from './components/ErrorPage'
+import PasswordReset from './components/auth/passwordReset';
 
 // car listings
 import SingleListing from './components/cars/SingleListing';
@@ -30,6 +31,7 @@ function App() {
             <Route path='/car-listing/:id' element={<SingleListing />}/>
             <Route path='/car-listtings/for/sale' element={<ListingType query='sale'/>}/>
             <Route path='/car-listtings/for/rent' element={<ListingType query='rent'/>}/>
+            <Route path='/password-reset' element={<PasswordReset />}/>
             <Route path='/*' element={<ErrorPage />}/>
           </Routes>
       </Router>
