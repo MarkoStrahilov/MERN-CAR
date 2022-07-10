@@ -2,6 +2,7 @@ const passport = require('passport');
 const User = require('../models/user');
 const OtpToken = require('../models/otpToken')
 const bcrypt = require('bcrypt')
+const crypto = require('crypto')
 const sendEmail = require('../sendEmails/verifyAccount')
 
 module.exports.registerUser = async(req, res) => {
@@ -233,7 +234,7 @@ module.exports.verifyAuthToken = async(req, res) => {
 
 }
 
-module.exports.passwordReset = async(req, res) => {
+module.exports.getPasswordReset = async(req, res) => {
 
     try {
 
@@ -251,12 +252,14 @@ module.exports.passwordReset = async(req, res) => {
         const resetToken = foundUser.createPasswordResetToken()
         await foundUser.save({ validateBeforeSave: false });
 
-        const passwordResetTest = `Forgot Your Password?! Here is your reset token ${resetToken} If you didnt request a password reset then please ignore this email`
+        const resetUrl = `localhost:3000/reset-my-password/${resetToken}`
+        const messageResetToken = `Forgot Your Password?! Submit a request to ${resetUrl} If you didnt request a password reset then please ignore this email`
 
         await sendEmail({
             email: req.body.email,
             subject: 'Password Reset',
-            text: passwordResetTest
+            text: messageResetToken
+
         })
 
         res.status(200).send({
@@ -272,4 +275,33 @@ module.exports.passwordReset = async(req, res) => {
             message: error.message,
         });
     }
+}
+
+
+module.exports.resetPasswordWithToken = async(req, res) => {
+
+    const hashedToken = crypto
+        .createHash('sha256')
+        .update(req.params.resetToken)
+        .digest('hex')
+
+    const foundUser = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } })
+
+    if (!foundUser) {
+
+        return res.status(404).send({
+            status: "fail",
+            message: "Cannot find user with that reset token"
+        })
+
+    }
+
+    res.status(200).send({
+        status: 'success',
+        message: "Successfuly retrieve user data",
+        data: { foundUser }
+    })
+
+    // "Token is invalid or has expired"
+
 }

@@ -31,7 +31,9 @@ const userSchema = new Schema({
     carListings: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'
-    }]
+    }],
+    passwordResetToken: String,
+    passwordResetExpires: Date
 }, { timestamps: true })
 
 userSchema.plugin(passportLocalMongoose)

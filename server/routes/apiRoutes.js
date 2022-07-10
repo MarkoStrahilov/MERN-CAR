@@ -5,7 +5,7 @@ const router = express.Router({ mergeParams: true });
 const { asyncErrorHandle, isLoggedIn } = require('../middlewares/middleware')
 
 // require authentication functions
-const { registerUser, loginUser, logoutUser, verifyAuthToken, passwordReset } = require('../controllers/authentication')
+const { registerUser, loginUser, logoutUser, verifyAuthToken, getPasswordReset, resetPasswordWithToken } = require('../controllers/authentication')
 
 // require user functions
 const { getUser, getMe } = require('../controllers/user')
@@ -28,7 +28,9 @@ router.get(`/api/v1/auth/logout/user`, asyncErrorHandle(logoutUser))
 
 router.post('/api/v1/auth/verify/auth/token/user', asyncErrorHandle(verifyAuthToken))
 
-router.post('/api/v1/auth/password/reset', asyncErrorHandle(passwordReset))
+router.post('/api/v1/auth/password/reset', asyncErrorHandle(getPasswordReset))
+
+router.patch('/api/v1/auth/password/reset/:resetToken', asyncErrorHandle(resetPasswordWithToken))
 
 // user routes
 router.get('/api/v1/user/:username', asyncErrorHandle(getUser))
