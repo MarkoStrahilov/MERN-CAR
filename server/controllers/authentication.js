@@ -285,6 +285,8 @@ module.exports.resetPasswordWithToken = async(req, res) => {
         .update(req.params.resetToken)
         .digest('hex')
 
+    const { newPassword, retypeNewPassword } = req.body
+
     const foundUser = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } })
 
     if (!foundUser) {
@@ -296,12 +298,34 @@ module.exports.resetPasswordWithToken = async(req, res) => {
 
     }
 
-    res.status(200).send({
-        status: 'success',
-        message: "Successfuly retrieve user data",
-        data: { foundUser }
-    })
+    if (newPassword !== retypeNewPassword) {
 
-    // "Token is invalid or has expired"
+        return res.status(406).send({
+            status: "fail",
+            message: "Passwords Don't match"
+        })
+
+    }
+
+
+    foundUser.setPassword(req.body.userNewPass, async function(err, user) {
+
+        if (err) {
+
+            res.status(406).send({
+                status: "fail",
+                message: "something went wrong please try again"
+            });
+
+        } else {
+
+            await foundUser.save()
+
+            res.status(200).send({
+                status: "success",
+                message: "password reset was successful"
+            })
+        }
+    });
 
 }
