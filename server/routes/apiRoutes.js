@@ -8,7 +8,7 @@ const { asyncErrorHandle, isLoggedIn } = require('../middlewares/middleware')
 const { registerUser, loginUser, logoutUser, verifyAuthToken, getPasswordReset, resetPasswordWithToken } = require('../controllers/authentication')
 
 // require user functions
-const { getUser, getMe } = require('../controllers/user')
+const { getUser, getMe, disableAccount, deleteAccount } = require('../controllers/user')
 
 // require car listing functions
 const { createCarListing, getCarListing, getCarListings } = require('../controllers/carListing')
@@ -36,6 +36,10 @@ router.patch('/api/v1/auth/password/reset/:resetToken', asyncErrorHandle(resetPa
 router.get('/api/v1/user/:username', asyncErrorHandle(getUser))
 
 router.get('/api/v1/user/currentUser', asyncErrorHandle(getMe))
+
+router.delete('/api/v1/user/:id/disable/account', asyncErrorHandle(disableAccount))
+
+router.delete('/api/v1/user/:id/delete/account', asyncErrorHandle(deleteAccount))
 
 // car listing routes
 router.get('/api/v1/get/car/listing/:id', asyncErrorHandle(getCarListing))

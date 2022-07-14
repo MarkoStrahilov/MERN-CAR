@@ -48,7 +48,7 @@ module.exports.registerUser = async(req, res) => {
 
     } catch (error) {
 
-        res.status(400).send({
+        return res.status(400).send({
             status: 'fail',
             message: error,
             data: null
@@ -262,7 +262,7 @@ module.exports.getPasswordReset = async(req, res) => {
 
         })
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             message: "Successfuly send reset token",
             data: { resetToken }
@@ -308,7 +308,7 @@ module.exports.resetPasswordWithToken = async(req, res) => {
     }
 
 
-    foundUser.setPassword(req.body.userNewPass, async function(err, user) {
+    foundUser.setPassword(req.body.retypeNewPassword, async function(err, user) {
 
         if (err) {
 
@@ -321,7 +321,7 @@ module.exports.resetPasswordWithToken = async(req, res) => {
 
             await foundUser.save()
 
-            res.status(200).send({
+            return res.status(200).send({
                 status: "success",
                 message: "password reset was successful"
             })
