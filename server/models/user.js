@@ -36,6 +36,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Car'
     }],
+    saveCarListing: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Car'
+    }],
     passwordResetToken: String,
     passwordResetExpires: Date
 }, { timestamps: true })

@@ -23,7 +23,7 @@ module.exports.getCarListings = async(req, res) => {
 
         }
 
-        const foundCars = await query;
+        let foundCars = await query;
 
         if (!foundCars.length) {
 
@@ -126,14 +126,40 @@ module.exports.createCarListing = async(req, res) => {
 
 }
 
-module.exports.findBasedOnLocation = async() => {
+module.exports.saveCarLising = async() => {
 
     try {
 
+        const foundUser = await User.findOne({ _id: req.params.userId })
+        const foundCarListing = await Car.findOne({ _id: req.params.carId })
+
+        if (!foundUser && !foundCarListing) {
+
+            res.status(400).send({
+                status: 'fail',
+                message: 'Cannot find the User or Car listing',
+            })
+
+        }
+
+
+        if (foundUser.saveCarLising.includes(foundCarListing._id)) {
+
+            res.status(400).send({
+                status: 'fail',
+                message: 'This listing has been already saved',
+            })
+
+        } else {
+
+            await User.updateOne(foundUser, { $push: { saveCarLising: foundCarListing._id } })
+
+        }
+
         res.status(200).send({
             status: 'success',
-            message: 'find by location',
-            data: null
+            message: 'Car Listing has been saved',
+            data: foundCarListing,
         })
 
     } catch (error) {
@@ -142,6 +168,56 @@ module.exports.findBasedOnLocation = async() => {
             status: 'fail',
             message: error,
             data: null
+        })
+
+    }
+
+}
+
+module.exports.unSaveCarListing = async() => {
+
+    try {
+
+        const foundUser = await User.findOne({ _id: req.params.userId })
+        const foundCarListing = await Car.findOne({ _id: req.params.carId })
+
+        if (!foundUser && !foundCarListing) {
+
+            res.status(400).send({
+                status: 'fail',
+                message: 'Cannot find the User or Car listing',
+            })
+
+        }
+
+
+        if (foundUser.saveCarLising.includes(foundCarListing._id)) {
+
+            await User.updateOne(foundUser, { $pull: { saveCarLising: foundCarListing._id } })
+
+        } else {
+
+            res.status(400).send({
+                status: 'fail',
+                message: 'This listing has not been saved yet',
+            })
+
+
+        }
+
+        res.status(200).send({
+            status: 'success',
+            message: 'Car Listing is not longer saved',
+            data: foundCarListing,
+        })
+
+    } catch (error) {
+
+        const { message } = error
+
+        res.status(400).send({
+            status: 'fail',
+            message: message,
         })
 
     }

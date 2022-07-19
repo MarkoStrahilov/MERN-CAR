@@ -58,9 +58,9 @@ module.exports.getMe = async(req, res) => {
 
     } catch (error) {
 
-        const { status, message } = error
+        const { message } = error
 
-        return res.status(status).send({
+        return res.status(400).send({
             status: 'fail',
             message: message,
             data: null
