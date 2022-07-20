@@ -50,7 +50,7 @@ router.get('/api/v1/query/car/listings/data', asyncErrorHandle(getCarListings))
 
 router.post('/api/v1/user/:userId/listing/:carId/save/listing', asyncErrorHandle(saveCarLising))
 
-router.delete('/api/v1/user/:userId/listing/:carId/unsave/listing', asyncErrorHandle(saveCarLising))
+router.delete('/api/v1/user/:userId/listing/:carId/unsave/listing', asyncErrorHandle(unSaveCarListing))
 
 // listing offers routes
 router.get('/api/v1/get/listing/offers', asyncErrorHandle(listingOffers))

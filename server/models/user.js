@@ -24,6 +24,10 @@ const userSchema = new Schema({
     accountType: {
         type: String,
     },
+    saveCarListing: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Car'
+    }],
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'
@@ -33,10 +37,6 @@ const userSchema = new Schema({
         ref: 'ContactDetails'
     },
     carListings: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Car'
-    }],
-    saveCarListing: [{
         type: Schema.Types.ObjectId,
         ref: 'Car'
     }],

@@ -126,7 +126,7 @@ module.exports.createCarListing = async(req, res) => {
 
 }
 
-module.exports.saveCarLising = async() => {
+module.exports.saveCarLising = async(req, res) => {
 
     try {
 
@@ -135,7 +135,7 @@ module.exports.saveCarLising = async() => {
 
         if (!foundUser && !foundCarListing) {
 
-            res.status(400).send({
+            return res.status(400).send({
                 status: 'fail',
                 message: 'Cannot find the User or Car listing',
             })
@@ -143,20 +143,24 @@ module.exports.saveCarLising = async() => {
         }
 
 
-        if (foundUser.saveCarLising.includes(foundCarListing._id)) {
+        if (foundUser.saveCarListing.includes(foundCarListing._id)) {
 
-            res.status(400).send({
+            return res.status(400).send({
                 status: 'fail',
                 message: 'This listing has been already saved',
             })
 
         } else {
 
-            await User.updateOne(foundUser, { $push: { saveCarLising: foundCarListing._id } })
+            await User.updateOne({ _id: foundUser._id }, { $push: { saveCarListing: foundCarListing._id } })
 
         }
 
-        res.status(200).send({
+        await foundUser.save()
+        await foundCarListing.save()
+
+
+        return res.status(200).send({
             status: 'success',
             message: 'Car Listing has been saved',
             data: foundCarListing,
@@ -164,9 +168,11 @@ module.exports.saveCarLising = async() => {
 
     } catch (error) {
 
-        res.status(400).send({
+        const { message } = error
+
+        return res.status(400).send({
             status: 'fail',
-            message: error,
+            message: message,
             data: null
         })
 
@@ -174,7 +180,7 @@ module.exports.saveCarLising = async() => {
 
 }
 
-module.exports.unSaveCarListing = async() => {
+module.exports.unSaveCarListing = async(req, res) => {
 
     try {
 
@@ -183,7 +189,7 @@ module.exports.unSaveCarListing = async() => {
 
         if (!foundUser && !foundCarListing) {
 
-            res.status(400).send({
+            return res.status(400).send({
                 status: 'fail',
                 message: 'Cannot find the User or Car listing',
             })
@@ -191,13 +197,13 @@ module.exports.unSaveCarListing = async() => {
         }
 
 
-        if (foundUser.saveCarLising.includes(foundCarListing._id)) {
+        if (foundUser.saveCarListing.includes(foundCarListing._id)) {
 
-            await User.updateOne(foundUser, { $pull: { saveCarLising: foundCarListing._id } })
+            await User.updateOne({ _id: foundUser._id }, { $pull: { saveCarListing: foundCarListing._id } })
 
         } else {
 
-            res.status(400).send({
+            return res.status(400).send({
                 status: 'fail',
                 message: 'This listing has not been saved yet',
             })
@@ -205,7 +211,7 @@ module.exports.unSaveCarListing = async() => {
 
         }
 
-        res.status(200).send({
+        return res.status(200).send({
             status: 'success',
             message: 'Car Listing is not longer saved',
             data: foundCarListing,
@@ -215,7 +221,7 @@ module.exports.unSaveCarListing = async() => {
 
         const { message } = error
 
-        res.status(400).send({
+        return res.status(400).send({
             status: 'fail',
             message: message,
         })
